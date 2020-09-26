@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title> Register </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+            function fillStates(value) {
+                var states = document.getElementById("states");
+                var country = document.getElementById("country");
+                for (var i = states.options.length - 1; i > 0; i--) {
+                    states.remove(i);
+                }
+                if (value.localeCompare("IN") == 0) {
+                    console.log("india")
+                    var statesList = [
+                        "Andra Pradesh",
+                        "Arunachal Pradesh",
+                        "Assam",
+                        "Bihar",
+                        "Chhattisgarh",
+                        "Goa",
+                        "Gujarat",
+                        "Haryana",
+                        "Himachal Pradesh",
+                        "Jammu and Kashmir",
+                        "Jharkhand",
+                        "Karnataka",
+                        "Kerala",
+                        "Madya Pradesh",
+                        "Maharashtra",
+                        "Manipur",
+                        "Meghalaya",
+                        "Mizoram",
+                        "Nagaland",
+                        "Orissa",
+                        "Punjab",
+                        "Rajasthan",
+                        "Sikkim",
+                        "Tamil Nadu",
+                        "Telagana",
+                        "Tripura",
+                        "Uttaranchal",
+                        "Uttar Pradesh",
+                        "West Bengal",
+                        "Andaman and Nicobar Islands",
+                        "Chandigarh",
+                        "Dadar and Nagar Haveli",
+                        "Daman and Diu",
+                        "Delhi",
+                        "Lakshadeep",
+                        "Pondicherry"
+                    ];
+                    for (var i = 0; i < statesList.length; i++) {
+                        var opn = document.createElement("option");
+                        opn.text = statesList[i];
+                        states.add(opn);
+                    }
+                }
+                else if (value.localeCompare("US") == 0) {
+                    var statesList = [
+                        "Alabama",
+                        "Alaska",
+                        "Arizona",
+                        "Arkansas",
+                        "California",
+                        "Colorado",
+                        "Connecticut",
+                        "Delaware",
+                        "Florida",
+                        "Georgia",
+                        "Hawaii",
+                        "Idaho",
+                        "Illinois",
+                        "Indiana",
+                        "Iowa",
+                        "Kansas",
+                        "Kentucky",
+                        "Louisiana",
+                        "Maine",
+                        "Maryland",
+                        "Massachusetts",
+                        "Michigan",
+                        "Minnesota",
+                        "Mississippi",
+                        "Missouri",
+                        "Montana",
+                        "Nebraska",
+                        "Nevada",
+                        "New Hampshire",
+                        "New Jersey",
+                        "New Mexico",
+                        "New York",
+                        "North Carolina",
+                        "North Dakota",
+                        "Ohio",
+                        "Oklahoma",
+                        "Oregon",
+                        "Pennsylvania",
+                        "Rhode Island",
+                        "South Carolina",
+                        "South Dakota",
+                        "Tennessee",
+                        "Texas",
+                        "Utah",
+                        "Vermont",
+                        "Virginia",
+                        "Washington",
+                        "Washington DC",
+                        "West Virginia",
+                        "Wisconsin",
+                        "Wyoming"
+                    ];
+                    for (var i = 0; i < statesList.length; i++) {
+                        var opn = document.createElement("option");
+                        opn.text = statesList[i];
+                        states.add(opn);
+                    }
+                }
+            }
+            function updStrength() {
+                console.log('test');
+                var password = document.getElementById("password");
+                var pswdstrength = document.getElementById("pswdstrength");
+                var strength = password.value.length;
+                if (strength <= 4) {
+                    pswdstrength.innerHTML = " &nbsp; Weak";
+                    pswdstrength.style.color = "red";
+                }
+                else if (strength <= 6) {
+                    pswdstrength.innerHTML = " &nbsp; Medium";
+                    pswdstrength.style.color = "orange";
+                }
+                else {
+                    pswdstrength.innerHTML = " &nbsp; Strong";
+                    pswdstrength.style.color = "green";
+                }
+            }
+            function generateCaptcha () {
+                document.getElementById("captcha").innerHTML = "Captcha : " + parseInt(Math.random() * 100000);
+            }
+            function validateForm () {
+                var captcha = document.getElementById("captcha").innerHTML;
+                var num = captcha.substr(10, captcha.length);
+                var inpNum = document.getElementById("userCaptcha").value;
+                if (num.localeCompare(inpNum) == 0) {
+                    console.log("okay");
+                    return true;
+                }
+                else {
+                    alert("Captcha doesn't match")
+                    return false;
+                }
+            }
+        </script>
+    </head>
+    <body onload="generateCaptcha()">
+        <br>
+        <br>
+        <h2 style="text-align: center;"> Register </h2>
+        <br>
+        <div style="padding-left: 30%; padding-right: 30%; padding-top: 40px;">
+            <form action="RegisterServlet" method="get" onsubmit="return validateForm()">
+                <div class="form-group">
+                    <label for="exampleInputName1">Full Name</label>
+                    <input id="name" pattern="^[A-Za-z -]+$" class="form-control" type="text" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="email@mail.com" required>
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPhone1">Phone</label>
+                    <input type="text" pattern="[0-9]*" class="form-control" id="exampleInputPhone1" placeholder="9192631770" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1" >Password</label>
+                    <input type="password" id="password" onkeyup="updStrength()" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$
+" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+                    <p id="pswdstrength" style="color: red;"> &nbsp; Weak </p>
+                </div>
+                <select id="country" onchange="fillStates(value)" class="custom-select custom-select-lg mb-3">
+                    <option selected>Select Country</option>
+                    <option value="IN">India</option>
+                    <option value="US">United States</option>
+                </select>
+
+                <select id="states" class="custom-select custom-select-sm">
+                    <option selected>Select State</option>
+                </select>
+                <br>
+                <!-- <div style="background-color: lightgray; margin-top: 10px; margin-bottom: 5px; width: 100%; height: 2px;"> -->
+                <!-- </div> -->
+                <br>
+                <div class="form-group">
+                    <label for="exampleInputCaptcha1" id="captcha">Captcha : </label> &nbsp; &nbsp;
+                    <input type="button" value="refresh" name="refresh" onclick="generateCaptcha()" style="margin-bottom: 5px;">
+                    <input type="text" pattern="[0-9]*" class="form-control" id="userCaptcha" placeholder="captcha" required>
+                </div>
+                <br>
+                <!-- <input type="submit" name="btn btn-primary" value="Submit" onsubmit="return validateForm()"> -->
+                <button id="submitForm" class="btn btn-primary" onsubmit="return validateForm()">Submit</button>
+            </form>
+        </div>
+    </body>
+</html>
