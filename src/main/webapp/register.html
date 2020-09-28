@@ -164,33 +164,32 @@
         <h2 style="text-align: center;"> Register </h2>
         <br>
         <div style="padding-left: 30%; padding-right: 30%; padding-top: 40px;">
-            <form action="RegisterServlet" method="get" onsubmit="return validateForm()">
+            <form action="RegistrationServlet" method="get" onsubmit="return validateForm()">
                 <div class="form-group">
                     <label for="exampleInputName1">Full Name</label>
                     <input id="name" pattern="^[A-Za-z -]+$" class="form-control" type="text" placeholder="John Doe" required>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="email@mail.com" required>
+                    <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="email@mail.com" required>
                     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPhone1">Phone</label>
-                    <input type="text" pattern="[0-9]*" class="form-control" id="exampleInputPhone1" placeholder="9192631770" required>
+                    <input type="text" name="phone" pattern="[0-9]*" class="form-control" id="exampleInputPhone1" placeholder="9192631770" required>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1" >Password</label>
-                    <input type="password" id="password" onkeyup="updStrength()" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$
-" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
-                    <p id="pswdstrength" style="color: red;"> &nbsp; Weak </p>
+                    <input type="password" id="password" name="password" onkeyup="updStrength()" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+                    <p id="pswdstrength"></p>
                 </div>
-                <select id="country" onchange="fillStates(value)" class="custom-select custom-select-lg mb-3">
+                <select id="country" name="country" onchange="fillStates(value)" class="custom-select custom-select-lg mb-3">
                     <option selected>Select Country</option>
                     <option value="IN">India</option>
                     <option value="US">United States</option>
                 </select>
 
-                <select id="states" class="custom-select custom-select-sm">
+                <select id="states" name="state" class="custom-select custom-select-sm">
                     <option selected>Select State</option>
                 </select>
                 <br>
@@ -209,3 +208,4 @@
         </div>
     </body>
 </html>
+<!-- pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" -->
