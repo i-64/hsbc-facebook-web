@@ -14,13 +14,13 @@
   	<servlet-name>LoginServlet</servlet-name>
   	<display-name>LoginServlet</display-name>
   	<description></description>
-  	<servlet-class>LoginServlet</servlet-class>
+  	<servlet-class>com.facebookweb.controller.LoginServlet</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>FriendistServlet</servlet-name>
   	<display-name>FriendistServlet</display-name>
   	<description></description>
-  	<servlet-class>FriendistServlet</servlet-class>
+  	<servlet-class>com.facebookweb.controller.FriendistServlet</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>RegistrationServlet</servlet-name>

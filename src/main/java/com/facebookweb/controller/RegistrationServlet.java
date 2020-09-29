@@ -19,8 +19,6 @@ import com.facebook.utilities.ServiceFactory;
  * Servlet implementation class RegistrationServlet
  */
 public class RegistrationServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-
 	/**
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */

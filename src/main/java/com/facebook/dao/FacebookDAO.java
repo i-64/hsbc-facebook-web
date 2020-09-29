@@ -64,10 +64,15 @@ public class FacebookDAO implements FacebookDAOInterface {
 			Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
 			con = DriverManager.getConnection("jdbc:derby:/home/i-64/Downloads/mydb1;create=true","mrunal","0348");
 			PreparedStatement ps = con.prepareStatement("select * from FBTABLE where email=? and password=?");
+			ps.setString(1, u.getEmail());
+			ps.setString(2, u.getPassword());
 			ResultSet res = ps.executeQuery();
+			
+			System.out.println(res.toString());
 			
 			if (res.next()) {
 				
+//				con.close();
 				return true;
 			}
 			
@@ -76,13 +81,13 @@ public class FacebookDAO implements FacebookDAOInterface {
 			e.printStackTrace();
 		}
 		finally {
-			
+			/*
 			try {
 				con.close();
 			} catch (SQLException e) {
 				
 				e.printStackTrace();
-			}
+			}*/
 		}
 		return false;
 	}

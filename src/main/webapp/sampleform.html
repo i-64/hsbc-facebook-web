@@ -1,0 +1,37 @@
+<html>
+<head>
+	<title> Sample Form </title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+		function updateCities() {
+			var prefix = document.getElementById("source").value;
+			var req = new XMLHttpRequest();
+			req.open("GET", "updateCities?prefix="+prefix, true);
+			req.send();
+			req.onreadystatechange = function() {
+				if (req.readyState == 4) {
+					var list = req.responseText.split(',');
+					var options = '';
+					for (var i = 0; i < list.length; i++) {
+					  options += '<option value="' + list[i] + '" />';
+					}
+					document.getElementById("source").innerHTML = options;
+				}
+			}
+		}
+    </script>
+</head>
+<body>
+	<div style="padding-left: 20%;padding-right: 10%; padding-top: 20%;">
+		<form method="post">
+			<input list="source" onkeyup="updateCities()" class="col-sm-6 custom-select custom-select-s" placeholder="Source">
+			<datalist id="source">
+			</datalist> 
+		</form>
+	</div>
+</body>
+</html>
