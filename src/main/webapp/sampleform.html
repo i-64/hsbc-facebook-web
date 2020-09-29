@@ -8,9 +8,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
     <script type="text/javascript">
 		function updateCities() {
-			var prefix = document.getElementById("source").value;
+			var prefix = document.getElementById("inpSource").value;
 			var req = new XMLHttpRequest();
-			req.open("GET", "updateCities?prefix="+prefix, true);
+			req.open("GET", "updateCities.jsp?prefix="+prefix, true);
 			req.send();
 			req.onreadystatechange = function() {
 				if (req.readyState == 4) {
@@ -23,14 +23,40 @@
 				}
 			}
 		}
+		function updateCities2() {
+			var prefix = document.getElementById("inpSource2").value;
+			var req = new XMLHttpRequest();
+			req.open("GET", "updateCities.jsp?prefix="+prefix, true);
+			req.send();
+			req.onreadystatechange = function() {
+				if (req.readyState == 4) {
+					var list = req.responseText.split(',');
+					var options = '';
+					for (var i = 0; i < list.length; i++) {
+					  options += '<option value="' + list[i] + '" />';
+					}
+					document.getElementById("source2").innerHTML = options;
+				}
+			}
+		}
     </script>
 </head>
 <body>
-	<div style="padding-left: 20%;padding-right: 10%; padding-top: 20%;">
-		<form method="post">
-			<input list="source" onkeyup="updateCities()" class="col-sm-6 custom-select custom-select-s" placeholder="Source">
+	
+	<div style="margin-left: 30%; margin-right: 30%; margin-top: 40px;">
+	<h2 style="text-align: center;"> Route Picker </h2>
+	<br>
+		<form action="submit.jsp" method="post">
+			<div class="form-group"><input list="source" id="inpSource" onkeyup="updateCities()" class="col-sm-6 custom-select custom-select-s" placeholder="Source">
 			<datalist id="source">
 			</datalist> 
+			</div>
+			<div class="form-group">
+			<input list="source" id="inpSource2" onkeyup="updateCities()" class="col-sm-6 custom-select custom-select-s" placeholder="Destination">
+			<datalist id="source2">
+			</datalist>
+			</div>
+			<button class="btn btn-primary">submit </button>
 		</form>
 	</div>
 </body>
